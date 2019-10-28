@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+
+    <title>Tutorials</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link href='css/style.css' rel='stylesheet' type='text/css' />
+
+</head>
+    <body class="help" ng-app="gridderApp">
+        <h1>
+            Tutorials
+        </h1>
+
+
+        <div ng-controller="gridderExample1Controller">
+            
+            <!-- Gridder navigation -->
+            <ul class="gridder clearfix">
+
+                <li class="gridder-list" data-griddercontent="#content{{tutorial.id}}" ng-repeat="tutorial in tutorials">
+                    <div class="image" style="background-image: url('content/Thumbnails/{{tutorial.thumbnail}}');">
+                    </div>
+                    <div class="label">{{tutorial.description}}</div>
+                </li>                    
+            </ul>
+            
+            <!-- BASIC CONTENT BLOCS -->
+            <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
+                <div class="row">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ZGeWNR8CWnA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js"></script> 
+        <script src="js/jquery.gridder.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/data.js"></script>  
+        <script src="js/controllers/mainController.js"></script>  
+
+        <script>
+
+            jQuery(document).ready(function ($) {
+                                
+                // Call Gridder
+                $('.gridder').gridderExpander({
+                    scroll: true,
+                    scrollOffset: 30,
+                    scrollTo: "panel", // panel or listitem
+                    animationSpeed: 400,
+                    animationEasing: "easeInOutExpo",
+                    showNav: true, // Show Navigation
+                    nextText: "<span></span>", // Next button text
+                    prevText: "<span></span>", // Previous button text
+                    closeText: "", // Close button text
+                    onStart: function () {
+                        //Gridder Inititialized
+                        console.log('On Gridder Initialized...');
+
+                    },
+                    onContent: function () {
+                        //Gridder Content Loaded
+                        console.log('On Gridder Expand...');
+                        $('.carousel').carousel();
+                    },
+                    onClosed: function () {
+                        //Gridder Closed
+                        console.log('On Gridder Closed...');
+
+                    }
+                });
+
+            });
+
+        </script>
+
+    </body>
+</html>
