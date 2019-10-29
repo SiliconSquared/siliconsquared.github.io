@@ -37,8 +37,8 @@
         <!-- BASIC CONTENT BLOCS -->
         <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
             <div class="row">
-                <div id="vidDiv{{tutorial.id}}">
-                    <iframe src='{{tutorial.video}}' frameborder='0' allow='accelerometer; autoplay; encrypted - media; gyroscope; picture -in -picture' allowfullscreen allowtransparency='true'></iframe>
+                <div id="vidDiv{{tutorial.id}}" class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ZGeWNR8CWnA" style="background-color:Black" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen allowtransparency="true"></iframe>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 onContent: function (object) {
                     //Gridder Content Loaded
                     console.log('On Gridder Expand...' + object);
-
+        /*
                     var htmlcontent = "<div class=\"gridder-padding\">";
                     htmlcontent += "<div class=\"gridder-navigation\">";
                     htmlcontent += "<a href=\"#\" class=\"gridder-close\"></a>";
@@ -93,7 +93,7 @@
 
                     htmlcontent += "</div>";
                     htmlcontent += "</div>";
-
+*/
                    //  object.html(htmlcontent);
                 },
                 onClosed: function () {
