@@ -21,8 +21,8 @@
 
         function delayShow(iframeObject)
         {
-            console.log("delayShow");
-            setTimeout(completedDelay, 2000, iframeObject);
+            console.log("delayShow" + iframeObject);
+            //setTimeout(completedDelay, 2000, iframeObject);
 
         }
 
@@ -39,7 +39,7 @@
         <!-- Gridder navigation -->
         <ul class="gridder clearfix">
 
-            <li class="gridder-list" data-griddercontent="#content{{tutorial.id}}" ng-repeat="tutorial in tutorials">
+            <li class="gridder-list" data-gridderid="{{tutorial.id}}" data-griddercontext="{{tutorial.video}}" data-griddercontent="#content{{tutorial.id}}" ng-repeat="tutorial in tutorials">
                 <div class="image" style="background-image: url('https://github.com/SiliconSquared/siliconsquared.github.io/blob/master/Tutorials/Content/Thumbnails/{{tutorial.thumbnail}}?raw=true');">
                 </div>
                 <div class="label">{{tutorial.description}}</div>
@@ -48,28 +48,26 @@
 
         <!-- BASIC CONTENT BLOCS -->
         <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
-            <div class="row">
-                <div id="vidDiv{{tutorial.id}}" class="video-wrapper">
-                    <iframe id="frameID{{tutorial.id}}" src="https://www.youtube.com/embed/ZGeWNR8CWnA" style="background-color:Red; visibility:hidden;" onload="completedDelay(this);" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen allowtransparency="true"></iframe>
-                </div>
 
-                
-
-            </div>
         </div>
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-
     <script src="https://siliconsquared.github.io/Tutorials/js/jquery.gridder.js"></script>
-
     <script src="https://siliconsquared.github.io/Tutorials/js/controllers/data.js"></script>
     <script src="https://siliconsquared.github.io/Tutorials/js/controllers/mainController.js"></script>
 
     <script>
 
+        function delayExpired(elementName) {
+            elementName.style.visibility = 'visible';
+        }
+
+        function delayedShow(elementName) {
+            setTimeout(delayExpired, 200, elementName);
+        }
 
 
         jQuery(document).ready(function ($) {
@@ -89,27 +87,16 @@
                 onStart: function () {
                     //Gridder Inititialized
                     console.log('On Gridder Initialized...');
-
+                },
+                onPreLoad: function (id, object) {
+                    var htmlcontent = "<div class=\"video-wrapper\">";
+                    htmlcontent += "<iframe id='iFrameVideo" + id + "' src='" + object + "' style=\"visibility:hidden\" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen allowtransparency='true' onload=\"delayedShow(iFrameVideo" + id + ");\"></iframe>";
+                    htmlcontent += "</div>";
+                    return htmlcontent;
                 },
                 onContent: function (object) {
                     //Gridder Content Loaded
                     console.log('On Gridder Expand...' + object);
-        /*
-                    var htmlcontent = "<div class=\"gridder-padding\">";
-                    htmlcontent += "<div class=\"gridder-navigation\">";
-                    htmlcontent += "<a href=\"#\" class=\"gridder-close\"></a>";
-
-                    htmlcontent += "<div class=\"gridder-expanded-content\">";
-                    htmlcontent += "<div class=\"video-wrapper\">";
-
-                    htmlcontent += "<iframe src='https://www.youtube.com/embed/kU78s9ExFFA' frameborder='0' allow='accelerometer; autoplay; encrypted - media; gyroscope; picture -in -picture' allowfullscreen allowtransparency='true'></iframe>";
-                    htmlcontent += "</div>";
-                    htmlcontent += "</div>";
-
-                    htmlcontent += "</div>";
-                    htmlcontent += "</div>";
-*/
-                   //  object.html(htmlcontent);
                 },
                 onClosed: function () {
                     //Gridder Closed

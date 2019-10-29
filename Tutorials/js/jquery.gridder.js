@@ -122,7 +122,7 @@
                 
                 /* GET CONTENT VIA AJAX OR #ID*/
                 var thecontent = "";
-                
+
                 if( myself.data("griddercontent").indexOf("#") === 0 ) {
                     
                     // Load #ID Content
@@ -164,11 +164,23 @@
                     htmlcontent += "<a href=\"#\" class=\"gridder-nav next "+(!nextItem.length?"disabled":"")+"\">"+settings.nextText+"</a>";
                     htmlcontent += "</div>";
                 }     
-                
+
                 htmlcontent += "<div class=\"gridder-expanded-content\">";
-                htmlcontent += thecontent;
+
+                var preLoadVal = null;
+                if (typeof (settings.onPreLoad) === "function") {
+                    preLoadVal = settings.onPreLoad(myself.data("gridderid"), myself.data("griddercontext"));
+                } 
+
+                if (preLoadVal != null)
+                    htmlcontent += preLoadVal;
+                else
+                    htmlcontent += thecontent;
                 htmlcontent += "</div>";
                 htmlcontent += "</div>";
+
+                console.log("HTML CONTENT");
+                console.log(htmlcontent);
 
                 // IF EXPANDER IS ALREADY EXPANDED 
                 if (!visible) {
@@ -243,7 +255,8 @@
         nextText: "Next",
         prevText: "Previous",
         closeText: "Close",    
-        onStart: function(){},
+        onStart: function () { },
+        onPreLoad: function () { },
         onContent: function(){},
         onClosed: function(){}
     };
