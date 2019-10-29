@@ -38,7 +38,7 @@
         <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
             <div class="row">
                 <div id="vidDiv{{tutorial.id}}">
-
+                    <iframe src='{{tutorial.video}}' frameborder='0' allow='accelerometer; autoplay; encrypted - media; gyroscope; picture -in -picture' allowfullscreen allowtransparency='true'></iframe>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                     htmlcontent += "</div>";
                     htmlcontent += "</div>";
 
-                    object.html(htmlcontent);
+                   //  object.html(htmlcontent);
                 },
                 onClosed: function () {
                     //Gridder Closed
