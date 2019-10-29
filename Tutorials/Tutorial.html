@@ -11,23 +11,8 @@
     <script src="https://siliconsquared.github.io/Tutorials/js/app.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <link href='css/style.css' rel='stylesheet' type='text/css' />
-
-    <script>
-
-        function completedDelay(iframeObject) {
-            console.log("completedDelay");
-            iframeObject.style.visibility = 'visible';
-        }
-
-        function delayShow(iframeObject) {
-            console.log("delayShow" + iframeObject);
-            //setTimeout(completedDelay, 2000, iframeObject);
-
-        }
-
-
-    </script>
 </head>
+
 <body class="help" ng-app="gridderApp">
     <h1>
         Tutorials
@@ -89,7 +74,7 @@
                 },
                 onPreLoad: function (id, object) {
                     var htmlcontent = "<div class=\"video-wrapper\">";
-                    htmlcontent += "<iframe id='iFrameVideo" + id + "' src='" + object + "' style=\"visibility:hidden\" frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen allowtransparency='true' onload=\"delayedShow(iFrameVideo" + id + ");\"></iframe>";
+                    htmlcontent += "<iframe id='iFrameVideo" + id + "' src='" + object + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen allowtransparency='true' onload=\"delayedShow(iFrameVideo" + id + ");\"></iframe>";
                     htmlcontent += "</div>";
                     return htmlcontent;
                 },
