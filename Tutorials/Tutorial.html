@@ -38,8 +38,11 @@
         <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
             <div class="row">
                 <div id="vidDiv{{tutorial.id}}" class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/ZGeWNR8CWnA" style="background-color:Black" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen allowtransparency="true"></iframe>
+                    <iframe id="frameID{{tutorial.id}}" src="https://www.youtube.com/embed/ZGeWNR8CWnA" style="background-color:Red; visibility:hidden;" onload="this.style.visibility = 'visible';" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen allowtransparency="true"></iframe>
                 </div>
+
+                
+
             </div>
         </div>
 
