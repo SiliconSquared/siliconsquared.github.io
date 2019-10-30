@@ -43,7 +43,7 @@
 
         function delayExpired(elementName, vidURL) {
             elementName.onload = null;
-            elementName.src = vidURL;
+            elementName.src = vidURL + "?autoplay=1";
         }
 
         function delayedShow(elementName, vidURL) {
