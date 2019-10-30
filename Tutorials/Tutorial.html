@@ -15,7 +15,7 @@
 
 <body class="help" ng-app="gridderApp">
     <h1>
-        Tutorialzz
+        Tutorial
     </h1>
 
     <div ng-controller="gridderExample1Controller">
@@ -32,7 +32,7 @@
 
         <!-- BASIC CONTENT BLOCS -->
         <div id="content{{tutorial.id}}" class="gridder-content" ng-repeat="tutorial in tutorials">
-
+            
         </div>
 
     </div>
@@ -73,6 +73,7 @@
                 },
                 onPreLoad: function (id, object) {
                     var htmlcontent = "<div class=\"video-wrapper\">";
+                    htmlcontent += "<div style='text-align:center; line-height:20px;font-size:40px;'>Loading...</div>";
                     htmlcontent += "<iframe id='iFrameVideo" + id + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen allowtransparency='true' onload=\"delayedShow(iFrameVideo" + id + ",'" + object + "');\"></iframe>";
                     htmlcontent += "</div>";
                     return htmlcontent;
